@@ -1,0 +1,2 @@
+websockets>=3.2
+pyyaml>=3.12

@@ -1,0 +1,5 @@
+addr: [localhost, 65534]
+# addr: 65534   # Allows external connections
+# addr: /tmp/prb.sock  # Unix domain socket
+passphrase: "pass"
+basedir: "~"  # A bare "~" stands for null in YAML, so we have to quote it

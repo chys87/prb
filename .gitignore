@@ -1,0 +1,6 @@
+__pycache__
+Session.vim
+node_modules
+*~
+.*
+!.gitignore

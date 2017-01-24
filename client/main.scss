@@ -1,0 +1,100 @@
+html, body, ul, ol, div, h1, h2, h3, h4, h5, h6, p, section, aside, nav, blockquote { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+button, input[type=button], input[type=submit], select { cursor: pointer; }
+@mixin clearfix { clear: both; }
+@mixin clearafter {
+  &::after {
+    content: "";
+    display: block;
+    @include clearfix;
+  }
+}
+
+$latinSans: Noto Sans;
+$latinMono: Droid Sans Mono;
+$cjkSans: Noto Sans CJK SC;
+$cjkSans: Noto Sans CJK SC;
+$textFontSize: 15px;
+$textLineHeight: $textFontSize + 5px;
+$backgroundColor: #fcfcfc;
+
+html, body, select, button, input {
+  font-family: $latinSans, $cjkSans, sans-serif;
+}
+html, body {
+  font-size: $textFontSize;
+  line-height: $textLineHeight;
+  background-color: $backgroundColor;
+}
+
+#sec_login {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 380px;
+  height: ($textLineHeight + 5px) * 3 + 20px;
+
+  body:not([data-step=login]) > & { display: none; }
+  > form > dl {
+    @include clearafter;
+    > dt, > dd {
+      float: left;
+      height: $textLineHeight + 5px;
+      margin: 3px;
+    }
+    > dt {
+      width: 100px;
+      text-align: right;
+      @include clearfix;
+    }
+    > dd > {
+      input, button {
+        width: 250px;
+      }
+    }
+  }
+}
+
+#sec_dir {
+  body:not([data-step=dir]) > & { display: none; }
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  > nav {
+    margin: 5px;
+    height: $textLineHeight + 10px;
+    > .cur_dir {
+      > span {
+        display: inline-block;
+        margin: 0 5px;
+      }
+      > i {
+        display: inline-block;
+        &::after {
+          margin: 0 3px;
+          content: "»";
+        }
+      }
+    }
+  }
+  > ul {
+    margin: 5px;
+    height: calc(100% - #{$textLineHeight + 15px});
+    overflow-y: scroll;
+    box-sizing: border-box;
+    > li {
+      display: block;
+      float: left;
+      width: 256px;
+      height: 256px;
+    }
+  }
+
+  .link_dir { cursor: pointer; }
+}

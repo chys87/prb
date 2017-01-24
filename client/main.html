@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRB client</title>
+  <meta charset="utf-8">
+  <meta name="author" content="chys87">
+  <link rel="stylesheet" href="gen/main.css">
+</head>
+<body>
+
+  <section id="sec_login">
+    <form>
+      <dl>
+        <dt><label for="input_host">Host</label></dt>
+        <dd><input type="text" id="input_host" name="prb_host" required></dd>
+        <dt><label for="input_pass">Passphrase</label></dt>
+        <dd><input type="password" id="input_pass" name="prb_pass" required></dd>
+        <dt></dt>
+        <dd><button type="submit">Go!</button></dd>
+      </dl>
+    </form>
+  </section>
+
+  <section id="sec_dir">
+    <nav>
+      <div class="cur_dir">
+      </div>
+    </nav>
+    <ul>
+    </ul>
+  </section>
+
+  <script src="vendor/jquery.min.js"></script>
+  <script src="gen/main.js"></script>
+  <script src="http://localhost:35729/livereload.js"></script>
+
+</body>
+</html>
