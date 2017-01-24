@@ -83,16 +83,55 @@ html, body {
       }
     }
   }
-  > ul {
+  .files {
+    $iconSize: 128px;
+    $textHeight: 16px;
+    $padding: 16px;
+    $margin: 16px;
+
     margin: 5px;
     height: calc(100% - #{$textLineHeight + 15px});
     overflow-y: scroll;
     box-sizing: border-box;
-    > li {
-      display: block;
-      float: left;
-      width: 256px;
-      height: 256px;
+    > figure {
+      width: $iconSize + $padding * 2;
+      height: $iconSize + $textHeight + $padding * 2;
+      padding: $padding; margin: $margin;
+      display: inline-block; vertical-align: bottom; position: relative;
+      cursor: pointer;
+      > figcaption {
+        display: block;
+        position: absolute;
+        text-align: center;
+        font-size: $textHeight;
+        line-height: $textHeight;
+        height: $textHeight;
+        left: 0;
+        right: 0;
+        bottom: $padding;
+      }
+      &.on { background-color: blue; color: white; }
+      &:not(.on):hover { background-color: #f9f9f9; }
+    }
+    > .dir, > .file {
+      &::before {
+        display: block;
+        width: $iconSize;
+        height: $iconSize;
+        font-size: $iconSize;
+        line-height: $iconSize;
+      }
+    }
+    > .dir::before { content: "📁"; }
+    > .file::before { content: "📃"; }
+    > .img {
+      > img {
+        display: block; position: absolute;
+        top: 0; left: 0; right: 0;
+        bottom: $textHeight;
+        max-width: $iconSize; max-height: $iconSize;
+        margin: auto;
+      }
     }
   }
 

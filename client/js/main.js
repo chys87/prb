@@ -1,7 +1,7 @@
 'use strict';
 
 const WS = require('./ws');
-const {htmlEncode} = require('./utils');
+const {htmlEncode, hE} = require('./utils');
 
 const body = document.body;
 
@@ -62,14 +62,22 @@ class PrbWS extends WS {
     }
     $curdir.html(html);
 
-    let $ul = $('#sec_dir > ul').empty();
+    let $files = $('#sec_dir .files').empty();
+    if (path && path != '/') {
+      $('<figure class="link_dir dir"><figcaption>..</figcaption></figure>').appendTo($files);
+    }
     for (let entry of res.list) {
-      var $li = $('<li/>').text(entry.name);
+      var $file = $('<figure/>');
+      $file.append($('<figcaption/>').text(entry.name));
       if (entry.dir) {
-        $li.addClass('link_dir dir');
-        $li[0].dataset.link = path + '/' + entry.name;
+        $file.addClass('link_dir dir');
+        $file[0].dataset.link = path + '/' + entry.name;
+      } else {
+        $file.addClass('file');
       }
-      $li.appendTo($ul);
+      if (entry.symlink)
+        $file.addClass('symlink');
+      $file.appendTo($files);
     }
   }
 }

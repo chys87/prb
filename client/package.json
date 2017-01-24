@@ -10,6 +10,7 @@
     "grunt-sass": "^2.0.0",
     "grunt-webpack": "^1.0.18",
     "load-grunt-tasks": "^3.5.2",
+    "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",

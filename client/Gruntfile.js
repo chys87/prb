@@ -15,7 +15,7 @@ module.exports = grunt => {
       all: ['gen/**.*'],
     },
     sass: { main: {
-      options: {outputStyle: 'compact', sourceMap: 'none'},
+      options: {outputStyle: 'compact', sourceMap: false},
       files: {'gen/main.css': 'main.scss'},
     }},
     webpack: { main: {

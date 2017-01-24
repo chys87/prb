@@ -1,9 +1,14 @@
 'use strict';
 
-const htmlEncode = exports.htmlEncode = function(s) {
-  s = s.replace(/&/g, "&amp;");
-  s = s.replace(/</g, "&lt;");
-  s = s.replace(/>/g, "&gt;");
-  s = s.replace(/"/g, "&quot;");
-  return s;
+const htmlEncode = exports.htmlEncode = require('lodash/escape');
+
+const hE = exports.hE = function hE(strings, ...values) {
+  const n = strings.length;
+  let r = '';
+  for (let i = 0; i < n; ++i) {
+    r += strings[i];
+    if (values[i])
+      r += htmlEncode(values[i]);
+  }
+  return r;
 }
