@@ -4,6 +4,8 @@ import locale
 import os
 import traceback
 
+import msgpack
+
 
 __all__ = ['Context', 'make_handler']
 
@@ -23,7 +25,7 @@ class Req:
 
     def respond(self, obj):
         obj = dict(obj, reqid=self.reqid)
-        return self.ws.send(json.dumps(obj))
+        return self.ws.send(msgpack.packb(obj))
 
     def error(self, msg):
         return self.respond({'error': msg})

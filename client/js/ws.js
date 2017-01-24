@@ -23,7 +23,15 @@ module.exports = class WS {
   onopen() {
   }
   onmessage(e) {
-    let msg = JSON.parse(e.data);
+    let blobData = e.data;
+    let reader = new FileReader();
+    reader.addEventListener('loadend', () => {
+      this.onrealmessage(new Uint8Array(reader.result));
+    });
+    reader.readAsArrayBuffer(blobData);
+  }
+  onrealmessage(data) {
+    let msg = msgpack5().decode(data);
     let handler = this.response_handler.get(msg.reqid);
     this.response_handler.delete(msg.reqid);
     if (msg.error) {

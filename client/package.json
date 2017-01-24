@@ -16,6 +16,7 @@
     "wscat": "^1.1.1"
   },
   "dependencies": {
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "msgpack5": "^3.4.1"
   }
 }
