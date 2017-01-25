@@ -3,6 +3,7 @@ import json
 import locale
 import os
 import traceback
+import zlib
 
 import msgpack
 
@@ -25,7 +26,7 @@ class Req:
 
     def respond(self, obj):
         obj = dict(obj, reqid=self.reqid)
-        return self.ws.send(msgpack.packb(obj))
+        return self.ws.send(zlib.compress(msgpack.packb(obj), 9))
 
     def error(self, msg):
         return self.respond({'error': msg})

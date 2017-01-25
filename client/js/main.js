@@ -20,7 +20,7 @@ class PrbWS extends WS {
   get valid() { return state.conn === this; }
   onopen() {
     state.conn = this;
-    this.raw_send(this._pass);
+    this.raw_send(require('./auth').gen_auth_data(this._pass));
     this.ls('');
   }
   onerror(e) {

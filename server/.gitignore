@@ -1,0 +1,2 @@
+conf.*.yaml
+!conf.sample.yaml

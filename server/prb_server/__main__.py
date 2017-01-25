@@ -7,6 +7,7 @@ import socket
 
 import websockets
 
+from .auth import authenticate
 from .config import Config
 from .handlers import Context, make_handler
 
@@ -36,8 +37,8 @@ class _Server:
 
         try:
             # Authentication
-            passphrase = await ws.recv()
-            if passphrase != self._conf.passphrase:
+            auth_data = await ws.recv()
+            if not authenticate(self._conf.passphrase, auth_data):
                 asyncio.ensure_future(ws.close(), loop=self._loop)
                 print('Authentication failed from {}'.format(ra))
                 return

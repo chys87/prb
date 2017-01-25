@@ -31,7 +31,7 @@ module.exports = class WS {
     reader.readAsArrayBuffer(blobData);
   }
   onrealmessage(data) {
-    let msg = msgpack5().decode(data);
+    let msg = msgpack5().decode(pako.inflate(data));
     let handler = this.response_handler.get(msg.reqid);
     this.response_handler.delete(msg.reqid);
     if (msg.error) {
